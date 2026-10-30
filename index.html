@@ -1,105 +1,52 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#18251b">
-  <title>So lange hast du schon mein Herz ❤️</title>
-  <style>
-    * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; }
-    body {
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      padding: 28px 20px;
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        linear-gradient(180deg, rgba(7,18,12,.18) 0%, rgba(7,18,12,.36) 48%, rgba(7,18,12,.66) 100%),
-        url("hintergrund.jpeg") center 43% / cover fixed no-repeat;
-      background-color: #26352a;
-    }
-    main {
-      width: min(100%, 460px);
-      text-align: center;
-      padding: 34px 18px;
-      border-radius: 28px;
-      background: rgba(10, 20, 13, .12);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      text-shadow: 0 2px 12px rgba(0,0,0,.55);
-    }
-    button {
-      width: 156px; height: 156px; border: 0; border-radius: 50%;
-      background: #16834a; color: #fff; font-size: 21px; font-weight: 700;
-      cursor: pointer; box-shadow: 0 8px 28px rgba(0,0,0,.28), inset 0 1px 1px rgba(255,255,255,.25);
-      text-shadow: none;
-    }
-    button:active { transform: scale(.97); }
-    button .play { display: block; font-size: 36px; line-height: 1.2; margin-bottom: 4px; }
-    .caption {
-      margin: 34px 0 18px;
-      font-family: "Segoe Script", "Snell Roundhand", cursive;
-      font-size: clamp(25px, 7vw, 34px);
-      line-height: 1.25;
-      font-weight: 500;
-    }
-    .heart { margin: 0 auto 16px; font-size: 24px; }
-    #counter {
-      font-size: clamp(14px, 3.8vw, 17px);
-      line-height: 1.8;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-    }
-    #status { min-height: 1.3em; margin-top: 12px; color: #fff; font-size: 13px; }
-    @media (max-height: 650px) {
-      main { padding: 16px 12px; }
-      button { width: 124px; height: 124px; }
-      .caption { margin-top: 22px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#77a9ed">
+<title>So lange hast du schon mein Herz ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{min-height:100svh;overflow-x:hidden;color:#fff;font-family:"Cormorant Garamond",Georgia,serif;background:#739ed8 url("hintergrund.jpeg") center center/cover no-repeat fixed}
+main{min-height:100svh;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;padding:max(9vh,54px) 16px 28px;text-shadow:0 1px 5px rgba(0,0,0,.24)}
+.play-button{width:150px;height:150px;flex:0 0 auto;border:0;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px;background:linear-gradient(145deg,#22b84d,#008b39);color:#fff;font-family:system-ui,sans-serif;font-size:20px;font-weight:400;cursor:pointer;box-shadow:0 5px 22px rgba(0,0,0,.18),0 0 22px rgba(255,255,255,.18);text-shadow:none;-webkit-tap-highlight-color:transparent}
+.play-icon{font-size:39px;line-height:1;margin-left:5px}.play-button:active{transform:scale(.97)}
+.caption{margin:24px 0 0;font-family:"Allura","Segoe Script",cursive;font-size:clamp(37px,8.2vw,55px);line-height:1.05;font-weight:400;white-space:nowrap;max-width:100%}
+.heart-divider{display:flex;align-items:center;justify-content:center;gap:13px;width:min(88%,390px);margin:8px auto 14px;font-size:31px;line-height:1;font-family:Georgia,serif}
+.heart-divider:before,.heart-divider:after{content:"";height:1px;flex:1;background:rgba(255,255,255,.9)}
+.counter{width:min(100%,510px);display:grid;grid-template-columns:repeat(4,1fr);align-items:start;font-family:"Cormorant Garamond",Georgia,serif;text-shadow:0 1px 5px rgba(0,0,0,.28)}
+.unit{display:flex;flex-direction:column;align-items:center;min-width:0;padding:0 5px}.unit+.unit{border-left:1px solid rgba(255,255,255,.85)}
+.number{font-size:clamp(48px,11vw,66px);line-height:.95;font-weight:400;font-variant-numeric:tabular-nums}
+.label{margin-top:5px;font-size:clamp(17px,4.2vw,22px);line-height:1.1;font-weight:500}
+#status{min-height:1.2em;margin-top:9px;color:#fff;font:13px system-ui,sans-serif;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+@media(max-height:700px){main{padding-top:5vh}.play-button{width:122px;height:122px;font-size:18px}.play-icon{font-size:32px}.caption{margin-top:18px}.heart-divider{margin:5px auto 9px}}
+@media(max-width:370px){.caption{font-size:34px}.play-button{width:136px;height:136px}.label{font-size:16px}}
+</style>
 </head>
 <body>
-  <main>
-    <button id="play" type="button" aria-label="Sprachnachricht abspielen">
-      <span class="play">▶</span>Drücken
-    </button>
-    <audio id="voice" src="nachricht.mp3" preload="metadata"></audio>
-    <div id="status" role="status" aria-live="polite"></div>
-    <div class="caption">So lange hast du schon mein Herz</div>
-    <div class="heart">♡</div>
-    <div id="counter" aria-live="off">Berechne Zeit …</div>
-  </main>
-  <script>
-    // Startzeit: 23. August 2026, 13:00 Uhr deutscher Ortszeit.
-    const start = new Date(2026, 7, 23, 13, 0, 0).getTime();
-    const counter = document.getElementById("counter");
-    const audio = document.getElementById("voice");
-    const status = document.getElementById("status");
-
-    function updateCounter() {
-      let total = Math.max(0, Math.floor((Date.now() - start) / 1000));
-      const days = Math.floor(total / 86400); total %= 86400;
-      const hours = Math.floor(total / 3600); total %= 3600;
-      const minutes = Math.floor(total / 60);
-      const seconds = total % 60;
-      counter.textContent = `${days} Tage · ${hours} Stunden · ${minutes} Minuten · ${seconds} Sekunden`;
-    }
-    updateCounter();
-    setInterval(updateCounter, 1000);
-
-    document.getElementById("play").addEventListener("click", async () => {
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-        await audio.play();
-        status.textContent = "";
-      } catch (error) {
-        status.textContent = "Die Aufnahme konnte nicht geladen werden.";
-      }
-    });
-    audio.addEventListener("ended", () => status.textContent = "");
-  </script>
+<main>
+<button class="play-button" id="play" type="button" aria-label="Sprachnachricht abspielen"><span class="play-icon">▶</span><span>Drücken</span></button>
+<audio id="voice" src="nachricht.mp3" preload="metadata"></audio>
+<div id="status" role="status" aria-live="polite"></div>
+<div class="caption">So lange hast du schon mein Herz</div>
+<div class="heart-divider" aria-hidden="true">♡</div>
+<div class="counter" aria-label="Zeit seit dem 23. August 2026 um 13 Uhr">
+<div class="unit"><span class="number" id="days">0</span><span class="label">Tage</span></div>
+<div class="unit"><span class="number" id="hours">0</span><span class="label">Stunden</span></div>
+<div class="unit"><span class="number" id="minutes">0</span><span class="label">Minuten</span></div>
+<div class="unit"><span class="number" id="seconds">0</span><span class="label">Sekunden</span></div>
+</div>
+</main>
+<script>
+const start=new Date(2026,7,23,13,0,0).getTime();
+const audio=document.getElementById("voice"),status=document.getElementById("status");
+function updateCounter(){let t=Math.max(0,Math.floor((Date.now()-start)/1000));const d=Math.floor(t/86400);t%=86400;const h=Math.floor(t/3600);t%=3600;const m=Math.floor(t/60),s=t%60;document.getElementById("days").textContent=d;document.getElementById("hours").textContent=h;document.getElementById("minutes").textContent=m;document.getElementById("seconds").textContent=s}
+updateCounter();setInterval(updateCounter,1000);
+document.getElementById("play").addEventListener("click",async()=>{try{audio.pause();audio.currentTime=0;await audio.play();status.textContent=""}catch(e){status.textContent="Die Sprachaufnahme konnte nicht geladen werden."}});
+audio.addEventListener("ended",()=>status.textContent="");
+</script>
 </body>
 </html>
