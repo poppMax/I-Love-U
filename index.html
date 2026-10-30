@@ -2,38 +2,77 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fffaf7">
-  <title>Für dich ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#18251b">
+  <title>So lange hast du schon mein Herz ❤️</title>
   <style>
     * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
     body {
-      margin: 0; min-height: 100vh; display: grid; place-items: center;
-      padding: 24px; background: #fffaf7; color: #262626;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 28px 20px;
+      color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(7,18,12,.18) 0%, rgba(7,18,12,.36) 48%, rgba(7,18,12,.66) 100%),
+        url("hintergrund.jpeg") center 43% / cover fixed no-repeat;
+      background-color: #26352a;
     }
-    main { width: min(100%, 440px); text-align: center; }
+    main {
+      width: min(100%, 460px);
+      text-align: center;
+      padding: 34px 18px;
+      border-radius: 28px;
+      background: rgba(10, 20, 13, .12);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      text-shadow: 0 2px 12px rgba(0,0,0,.55);
+    }
     button {
-      width: 190px; height: 190px; border: 0; border-radius: 50%;
-      background: #16834a; color: white; font-size: 25px; font-weight: 700;
-      cursor: pointer; box-shadow: 0 8px 24px #16834a30;
+      width: 156px; height: 156px; border: 0; border-radius: 50%;
+      background: #16834a; color: #fff; font-size: 21px; font-weight: 700;
+      cursor: pointer; box-shadow: 0 8px 28px rgba(0,0,0,.28), inset 0 1px 1px rgba(255,255,255,.25);
+      text-shadow: none;
     }
-    button:active { transform: scale(.98); }
-    .caption { margin: 28px 0 12px; font-size: 22px; line-height: 1.4; }
-    #counter { font-size: 16px; line-height: 1.8; font-variant-numeric: tabular-nums; }
-    #status { min-height: 1.3em; margin-top: 12px; color: #777; font-size: 13px; }
+    button:active { transform: scale(.97); }
+    button .play { display: block; font-size: 36px; line-height: 1.2; margin-bottom: 4px; }
+    .caption {
+      margin: 34px 0 18px;
+      font-family: "Segoe Script", "Snell Roundhand", cursive;
+      font-size: clamp(25px, 7vw, 34px);
+      line-height: 1.25;
+      font-weight: 500;
+    }
+    .heart { margin: 0 auto 16px; font-size: 24px; }
+    #counter {
+      font-size: clamp(14px, 3.8vw, 17px);
+      line-height: 1.8;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+    #status { min-height: 1.3em; margin-top: 12px; color: #fff; font-size: 13px; }
+    @media (max-height: 650px) {
+      main { padding: 16px 12px; }
+      button { width: 124px; height: 124px; }
+      .caption { margin-top: 22px; }
+    }
   </style>
 </head>
 <body>
   <main>
-    <button id="play" type="button" aria-label="Sprachnachricht abspielen">▶<br>Drücken</button>
+    <button id="play" type="button" aria-label="Sprachnachricht abspielen">
+      <span class="play">▶</span>Drücken
+    </button>
     <audio id="voice" src="nachricht.mp3" preload="metadata"></audio>
     <div id="status" role="status" aria-live="polite"></div>
     <div class="caption">So lange hast du schon mein Herz</div>
-    <div id="counter">Berechne Zeit …</div>
+    <div class="heart">♡</div>
+    <div id="counter" aria-live="off">Berechne Zeit …</div>
   </main>
   <script>
-    // 23. August 2026, 17:00 Uhr deutscher Ortszeit.
+    // Startzeit: 23. August 2026, 13:00 Uhr deutscher Ortszeit.
     const start = new Date(2026, 7, 23, 13, 0, 0).getTime();
     const counter = document.getElementById("counter");
     const audio = document.getElementById("voice");
@@ -45,8 +84,7 @@
       const hours = Math.floor(total / 3600); total %= 3600;
       const minutes = Math.floor(total / 60);
       const seconds = total % 60;
-      counter.textContent =
-        `${days} Tage · ${hours} Stunden · ${minutes} Minuten · ${seconds} Sekunden`;
+      counter.textContent = `${days} Tage · ${hours} Stunden · ${minutes} Minuten · ${seconds} Sekunden`;
     }
     updateCounter();
     setInterval(updateCounter, 1000);
@@ -58,7 +96,7 @@
         await audio.play();
         status.textContent = "";
       } catch (error) {
-        status.textContent = "Die Aufnahme konnte nicht geladen werden. Bitte öffne die Seite über den Webserver und achte darauf, dass nachricht.mp3 im selben Ordner liegt.";
+        status.textContent = "Die Aufnahme konnte nicht geladen werden.";
       }
     });
     audio.addEventListener("ended", () => status.textContent = "");
